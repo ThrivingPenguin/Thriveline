@@ -261,11 +261,18 @@
             border: 2px solid var(--border);
             background: var(--bg-primary);
             color: var(--text-primary);
-            border-radius: 25px;
+            border-radius: 50px;
             cursor: pointer;
             transition: all 0.3s ease;
             font-size: 0.95rem;
             position: relative;
+            min-width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            flex-direction: column;
         }
 
         .circle-btn:hover {
@@ -425,18 +432,18 @@
         <!-- Circles Navigation -->
         <nav class="circles-nav">
             <div class="circles-container">
-                <button class="circle-btn active" onclick="showCircle('general')">General</button>
-                <button class="circle-btn" onclick="showCircle('behavioral')">Behavioral</button>
+                <button class="circle-btn active" onclick="showCircle('general')">General<br>Haven</button>
+                <button class="circle-btn" onclick="showCircle('behavioral')">Behavioral<br>Lighthouse</button>
                 <button class="circle-btn locked" onclick="showCircle('safety')">
-                    Safety Concerns <span class="lock-icon">🔒</span>
+                    Safety<br>Concerns <span class="lock-icon">🔒</span>
                 </button>
                 <button class="circle-btn locked" onclick="showCircle('sexual')">
-                    Sexual Behaviors <span class="lock-icon">🔒</span>
+                    Sexual<br>Behaviors <span class="lock-icon">🔒</span>
                 </button>
-                <button class="circle-btn" onclick="showCircle('substance')">Substance</button>
-                <button class="circle-btn" onclick="showCircle('superpowers')">Superpowers</button>
-                <button class="circle-btn" onclick="showCircle('success')">Success Stories</button>
-                <button class="circle-btn" onclick="showCircle('research')">Research Hub</button>
+                <button class="circle-btn" onclick="showCircle('substance')">Substance<br>Harbor</button>
+                <button class="circle-btn" onclick="showCircle('superpowers')">Superpowers &<br>Unique Abilities</button>
+                <button class="circle-btn" onclick="showCircle('success')">Success<br>Stories</button>
+                <button class="circle-btn" onclick="showCircle('research')">Research<br>Hub</button>
             </div>
         </nav>
 
@@ -608,7 +615,7 @@
             const statuses = [
                 { count: 3, text: "3 Bridge Builders Active", online: true },
                 { count: 1, text: "1 Bridge Builder Active", online: true },
-                { count: 0, text: "Bridge Builders Offline - Responses within ~6 hours", online: false }
+                { count: 0, text: "Bridge Builders Offline - Responses typically within ~6 hours", online: false }
             ];
             
             // Simulate random status (in real app, this would be from server)
