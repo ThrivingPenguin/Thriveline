@@ -245,8 +245,26 @@
     /* Circles Navigation */
     .circles-nav {
         background: var(--bg-secondary);
-        padding: 20px;
+        padding: 40px 20px;
         border-bottom: 1px solid var(--border);
+    }
+
+    .circles-nav h2 {
+        text-align: center;
+        color: var(--accent);
+        margin-bottom: 30px;
+        max-width: 1200px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .circles-nav p {
+        text-align: center;
+        color: var(--text-secondary);
+        margin-bottom: 30px;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .circles-container {
@@ -266,7 +284,7 @@
         border-radius: 50%;
         cursor: pointer;
         transition: all 0.3s ease;
-        font-size: 0.85rem;
+        font-size: 0.75rem;
         position: relative;
         width: 110px;
         height: 110px;
@@ -276,6 +294,12 @@
         text-align: center;
         flex-direction: column;
         line-height: 1.2;
+    }
+
+    .circle-btn span.subtitle {
+        font-size: 0.65rem;
+        color: var(--text-secondary);
+        margin-top: 2px;
     }
 
     .circle-btn:hover {
@@ -311,6 +335,7 @@
         max-width: 1200px;
         margin: 0 auto;
         padding: 20px;
+        padding-top: 0;
     }
 
     .welcome-message {
@@ -444,29 +469,46 @@
 
     <!-- Circles Navigation -->
     <nav class="circles-nav">
+        <h2>Welcome to Your ThriveLine Community</h2>
+        <p>You're in a safe space where truth is welcomed and support flows naturally.</p>
         <div class="circles-container">
-            <button class="circle-btn active" onclick="showCircle('general')">General<br>Circle</button>
-            <button class="circle-btn" onclick="showCircle('connection')">Community<br>Connection</button>
+            <button class="circle-btn active" onclick="showCircle('general')">
+                General<br>Circle
+                <span class="subtitle">Daily Challenges</span>
+            </button>
+            <button class="circle-btn" onclick="showCircle('connection')">
+                Community<br>Connection
+                <span class="subtitle">Being Human</span>
+            </button>
             <button class="circle-btn locked" onclick="showCircle('safety')">
                 Safety<br>Concerns <span class="key-icon">🗝️</span>
+                <span class="subtitle">Request Access</span>
             </button>
             <button class="circle-btn locked" onclick="showCircle('sexual')">
                 Sexual<br>Behaviors <span class="key-icon">🗝️</span>
+                <span class="subtitle">Request Access</span>
             </button>
-            <button class="circle-btn" onclick="showCircle('substance')">Substance<br>Use</button>
-            <button class="circle-btn" onclick="showCircle('superpowers')">Superpowers &<br>Unique Abilities</button>
-            <button class="circle-btn" onclick="showCircle('success')">Circle of<br>Hope</button>
-            <button class="circle-btn" onclick="showCircle('research')">Research<br>Hub</button>
+            <button class="circle-btn" onclick="showCircle('substance')">
+                Substance<br>Use
+                <span class="subtitle">Support & Resources</span>
+            </button>
+            <button class="circle-btn" onclick="showCircle('superpowers')">
+                Superpowers &<br>Unique Abilities
+                <span class="subtitle">Celebrate Strengths</span>
+            </button>
+            <button class="circle-btn" onclick="showCircle('success')">
+                Circle of<br>Hope
+                <span class="subtitle">Success Stories</span>
+            </button>
+            <button class="circle-btn" onclick="showCircle('research')">
+                Research<br>Hub
+                <span class="subtitle">Evidence & Change</span>
+            </button>
         </div>
     </nav>
 
     <!-- Main Content -->
     <main class="main-content">
-        <div class="welcome-message">
-            <h2>Welcome to Your ThriveLine Community</h2>
-            <p>You're in a safe space where truth is welcomed and support flows naturally.</p>
-        </div>
-
         <!-- Circle Contents -->
         <div class="circle-content active" id="general-content">
             <div class="circle-header">
