@@ -505,8 +505,8 @@
                 <span class="subtitle">Request Access</span>
             </button>
             <button class="circle-btn" onclick="showCircle('superpowers')">
-                Superpowers &<br>Unique Abilities
-                <span class="subtitle">Your Child's Gifts</span>
+                Superpowers
+                <span class="subtitle">Your Child's Unique Gifts</span>
             </button>
             <button class="circle-btn" onclick="showCircle('success')">
                 Circle of<br>Hope
@@ -522,7 +522,7 @@
             </button>
         </div>
         <div style="text-align: center; margin-top: 30px;">
-            <button class="continue-btn" style="background: var(--bg-tertiary); color: var(--text-primary); padding: 10px 30px; font-size: 0.95rem;" onclick="toggleAllDescriptions()">
+            <button class="continue-btn" style="background: var(--accent); color: white; padding: 10px 30px; font-size: 0.95rem;" onclick="toggleAllDescriptions()">
                 View Expanded Circle Descriptions ↓
             </button>
         </div>
@@ -530,121 +530,6 @@
 
     <!-- Main Content -->
     <main class="main-content">
-        <!-- Circle Contents -->
-        <div class="circle-content active" id="general-content">
-            <div class="circle-header">
-                <h3>General Circle</h3>
-                <p class="circle-description">
-                    Daily challenges and nonviolent behaviors. This is your home base for support,
-                    where we navigate the everyday complexities of parenting children with unique challenges.
-                </p>
-            </div>
-            <div class="crisis-alert">
-                <span class="icon">⚠️</span>
-                <div>
-                    <strong>Rising Tide Alert System Active</strong><br>
-                    If you're in crisis, your post will be prioritized. Bridge Builders typically respond within 6 hours.
-                </div>
-            </div>
-        </div>
-
-        <div class="circle-content" id="connection-content">
-            <div class="circle-header">
-                <h3>Community Connection Circle</h3>
-                <p class="circle-description">
-                    Being human together. Share your hobbies, dreams, victories, and life outside of crisis. 
-                    This is our space to remember we're whole people - knitters, dreamers, concert-goers, 
-                    students, friends. No politics, just humanity.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="superpowers-content">
-            <div class="circle-header">
-                <h3>Superpowers & Unique Abilities Circle</h3>
-                <p class="circle-description">
-                    Every child has strengths. Here we celebrate the unique neurological gifts, talents, 
-                    and abilities that make our children extraordinary. Share victories, discover pathways, 
-                    and build on strengths.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="success-content">
-            <div class="circle-header">
-                <h3>Circle of Hope</h3>
-                <p class="circle-description">
-                    Hope lives here. Real stories from real families about progress, breakthroughs, 
-                    and the long journey toward stability. Your story could light the way for someone else.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="substance-content">
-            <div class="circle-header">
-                <h3>Substance Use Circle</h3>
-                <p class="circle-description">
-                    Support for families dealing with substance use concerns. 
-                    Share experiences, prevention strategies, and treatment resources.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="safety-content">
-            <div class="circle-header">
-                <h3>Safety Concerns Circle</h3>
-                <p class="circle-description">
-                    Physical safety and violence. For families navigating serious safety concerns,
-                    violence, and physical threats. This is a vetted space for our most vulnerable situations.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="sexual-content">
-            <div class="circle-header">
-                <h3>Sexual Behaviors Circle</h3>
-                <p class="circle-description">
-                    Sexual behaviors and concerns. A carefully vetted space for families dealing with
-                    sexual behavior challenges. Your story is safe here.
-                </p>
-            </div>
-        </div>
-
-        <div class="circle-content" id="research-content">
-            <div class="circle-header">
-                <h3>Research Hub - Evidence & Discovery</h3>
-                <p class="circle-description">
-                    Bridge the gap between lived experience and academic research. Find existing studies, 
-                    participate in upcoming research, and help document patterns that need investigation. 
-                    Your family's experience could contribute to breakthrough discoveries.
-                </p>
-            </div>
-            <div class="crisis-alert" style="background: var(--accent); margin-top: 20px;">
-                <span class="icon">🔬</span>
-                <div>
-                    <strong>Research Participation Opportunities</strong><br>
-                    Current studies seeking families with conduct disorder experience. 
-                    Your voice matters in shaping better understanding and treatments.
-                </div>
-            </div>
-            <div style="margin-top: 20px; padding: 20px; background: var(--bg-tertiary); border-radius: 8px;">
-                <h4 style="color: var(--accent); margin-bottom: 10px;">Two-Way Research Exchange</h4>
-                <ul style="list-style: none; padding: 0;">
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">
-                        📝 <strong>What I Wish Researchers Knew</strong> - Share insights researchers are missing
-                    </li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">
-                        ❓ <strong>Ask the Families First</strong> - Researchers post questions BEFORE designing studies
-                    </li>
-                    <li style="padding: 10px 0; border-bottom: 1px solid var(--border);">
-                        ⚠️ <strong>Research Reality Check</strong> - Flag problematic study designs
-                    </li>
-                    <li style="padding: 10px 0;">
-                        🤝 <strong>Bridge Builder Research Liaisons</strong> - Translators between worlds
-                    </li>
-                </ul>
-            </div>
-        </div>
     </main>
 </div>
 
@@ -698,17 +583,6 @@
             btn.classList.remove('active');
         });
         event.target.classList.add('active');
-        
-        // Show corresponding content
-        document.querySelectorAll('.circle-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        
-        const contentId = circleName + '-content';
-        const content = document.getElementById(contentId);
-        if (content) {
-            content.classList.add('active');
-        }
     }
     
     function toggleAllDescriptions() {
