@@ -270,10 +270,18 @@
     .circles-container {
         max-width: 1200px;
         margin: 0 auto;
-        display: flex;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
         gap: 15px;
-        flex-wrap: wrap;
-        justify-content: center;
+        justify-items: center;
+        padding: 0 20px;
+    }
+    
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .circles-container {
+            grid-template-columns: repeat(4, 1fr);
+            max-width: 600px;
+        }
     }
 
     .circle-btn {
@@ -478,15 +486,11 @@
     <!-- Circles Navigation -->
     <nav class="circles-nav">
         <h2>Welcome to Your ThriveLine Community</h2>
-        <p>You're in a safe space where truth is welcomed and support flows naturally.</p>
+        <p>You're in a safe haven where truth is transformation and support flows freely.</p>
         <div class="circles-container">
             <button class="circle-btn active" onclick="showCircle('general')">
                 General<br>Circle
                 <span class="subtitle">Nonviolent Challenges</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('connection')">
-                Community<br>Connection
-                <span class="subtitle">Life Beyond Parenting</span>
             </button>
             <button class="circle-btn locked" onclick="showCircle('safety')">
                 Safety<br>Concerns <span class="key-icon">🗝️</span>
@@ -508,9 +512,18 @@
                 Circle of<br>Hope
                 <span class="subtitle">Success Stories</span>
             </button>
+            <button class="circle-btn" onclick="showCircle('connection')">
+                Community<br>Connection
+                <span class="subtitle">Life Beyond Parenting</span>
+            </button>
             <button class="circle-btn" onclick="showCircle('research')">
                 Research<br>Hub
                 <span class="subtitle">Evidence & Change</span>
+            </button>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="continue-btn" style="background: var(--bg-tertiary); color: var(--text-primary); padding: 10px 30px; font-size: 0.95rem;" onclick="toggleAllDescriptions()">
+                View Expanded Circle Descriptions ↓
             </button>
         </div>
     </nav>
@@ -698,6 +711,107 @@
         }
     }
     
+    function toggleAllDescriptions() {
+        const allDescriptions = document.getElementById('all-descriptions');
+        if (!allDescriptions) {
+            // Create the all descriptions section
+            const descriptionsHTML = `
+                <div id="all-descriptions" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+                    <h3 style="text-align: center; color: var(--accent); margin-bottom: 30px;">Circle Descriptions & Access Information</h3>
+                    
+                    <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+                        <div class="circle-desc-card">
+                            <h4>General Circle</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Daily challenges and nonviolent behaviors. Your home base for support in navigating everyday complexities.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Safety Concerns Circle 🗝️</h4>
+                            <p><em>Requires vetting</em></p>
+                            <p>Physical safety and violence. For families navigating serious safety concerns and physical threats.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Sexual Behaviors Circle 🗝️</h4>
+                            <p><em>Requires vetting</em></p>
+                            <p>A carefully protected space for families dealing with sexual behavior challenges.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Substance Use Circle 🗝️</h4>
+                            <p><em>Requires vetting</em></p>
+                            <p>Support for families navigating substance use concerns and impossible decisions.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Superpowers & Unique Abilities</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Celebrate your child's neurological gifts, talents, and extraordinary abilities.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Circle of Hope</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Real success stories from real families. Your story could light the way for others.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Community Connection</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Being human together. Share hobbies, dreams, and life beyond parenting challenges.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Research Hub</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Bridge the gap between lived experience and academic research. Shape the future of understanding.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            const mainContent = document.querySelector('.main-content');
+            mainContent.insertAdjacentHTML('afterbegin', descriptionsHTML);
+            
+            // Add styles for the cards
+            const style = document.createElement('style');
+            style.textContent = `
+                .circle-desc-card {
+                    background: var(--bg-secondary);
+                    padding: 20px;
+                    border-radius: 8px;
+                    border: 1px solid var(--border);
+                }
+                .circle-desc-card h4 {
+                    color: var(--accent);
+                    margin-bottom: 10px;
+                }
+                .circle-desc-card p {
+                    color: var(--text-secondary);
+                    margin-bottom: 8px;
+                }
+            `;
+            document.head.appendChild(style);
+            
+            // Scroll to descriptions
+            allDescriptions.scrollIntoView({ behavior: 'smooth' });
+            
+            // Update button text
+            event.target.textContent = 'Hide Circle Descriptions ↑';
+        } else {
+            // Toggle visibility
+            if (allDescriptions.style.display === 'none') {
+                allDescriptions.style.display = 'block';
+                allDescriptions.scrollIntoView({ behavior: 'smooth' });
+                event.target.textContent = 'Hide Circle Descriptions ↑';
+            } else {
+                allDescriptions.style.display = 'none';
+                event.target.textContent = 'View Expanded Circle Descriptions ↓';
+            }
+        }
+    }
+    
     function updateBridgeBuilderStatus() {
         const statuses = [
             { count: 3, text: "3 Bridge Builders Active", online: true },
@@ -738,12 +852,5 @@
         }
         
         if (savedFontSize) {
-            document.getElementById('fontSize').value = savedFontSize;
-            setFontSize(savedFontSize);
-        }
-    }
-</script>
+            document.getElementById('fontSize').value = savedFontSize
 ```
-
-</body>
-</html>
