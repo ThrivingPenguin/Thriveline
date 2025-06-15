@@ -279,8 +279,8 @@
     
     @media (min-width: 768px) and (max-width: 1024px) {
         .circles-container {
-            grid-template-columns: repeat(4, 1fr);
-            max-width: 600px;
+            grid-template-columns: repeat(5, 1fr);
+            max-width: 700px;
         }
     }
 
@@ -520,6 +520,14 @@
                 Research<br>Hub
                 <span class="subtitle">Evidence & Change</span>
             </button>
+            <button class="circle-btn" onclick="showCircle('education')">
+                Education<br>Circle
+                <span class="subtitle">Learn & Grow</span>
+            </button>
+            <button class="circle-btn" onclick="showCircle('media')">
+                Media<br>Circle
+                <span class="subtitle">Coverage & Connection</span>
+            </button>
         </div>
         <div style="text-align: center; margin-top: 30px;">
             <button class="continue-btn" style="background: var(--accent); color: white; padding: 10px 30px; font-size: 0.95rem;" onclick="toggleAllDescriptions()">
@@ -640,6 +648,18 @@
                             <h4>Research Hub</h4>
                             <p><em>Open to all members</em></p>
                             <p>Read existing research, participate in new studies, and bridge the gap between lived experience and academic understanding. Access peer-reviewed studies, share what researchers are missing, and help shape future research directions.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Education Circle</h4>
+                            <p><em>Open to all members</em></p>
+                            <p>Beyond research papers - find books, courses, workshops, and evidence-based strategies. Learn about neurodiversity, legal rights, therapeutic approaches, and what actually works from both professionals and experienced parents.</p>
+                        </div>
+                        
+                        <div class="circle-desc-card">
+                            <h4>Media Circle</h4>
+                            <p><em>Open to all members, special reporter access</em></p>
+                            <p>Engage with media coverage of our families. Share articles and videos, flag harmful narratives in "Media Got It Wrong," and help reporters understand through "What I Wish Media Understood." Vetted reporters can request interviews with parent consent.</p>
                         </div>
                     </div>
                 </div>
