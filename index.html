@@ -468,6 +468,38 @@
             Yes, continue
         </button>
     </div>
+    <!-- Account Creation Screen -->
+    <div class="account-setup" id="accountSetup" style="display: none;">
+        <div class="comfort-card">
+            <h2>Create Your ThriveLine Account</h2>
+            <p>Let's set up your account for the ThriveLine ecosystem</p>
+            
+            <form id="accountForm">
+                <div class="form-group">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" name="firstName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" name="lastName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="handle">Choose Your Universal Handle</label>
+                    <input type="text" id="handle" name="handle" required>
+                    <small>This will be used across all communities. Choose carefully - avoid identifying information like locations.</small>
+                </div>
+                
+                <button type="submit" class="continue-btn">Create Account</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <!-- Main App -->
