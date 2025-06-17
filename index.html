@@ -5,480 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThriveLine - Building Communities That Thrive</title>
-    <style>
-        /* CSS Variables for Theming */
-        :root {
-            --bg-primary: #ffffff;
-            --bg-secondary: #f5f5f5;
-            --bg-tertiary: #e0e0e0;
-            --text-primary: #212121;
-            --text-secondary: #666666;
-            --accent: #2e7d32;
-            --accent-hover: #1b5e20;
-            --danger: #d32f2f;
-            --warning: #f57c00;
-            --success: #388e3c;
-            --border: #dddddd;
-            --shadow: rgba(0,0,0,0.1);
-        }
-
-```
-    [data-theme="dark"] {
-        --bg-primary: #121212;
-        --bg-secondary: #1e1e1e;
-        --bg-tertiary: #2d2d2d;
-        --text-primary: #ffffff;
-        --text-secondary: #b0b0b0;
-        --accent: #4caf50;
-        --accent-hover: #66bb6a;
-        --border: #333333;
-        --shadow: rgba(0,0,0,0.3);
-    }
-
-    [data-theme="high-contrast"] {
-        --bg-primary: #000000;
-        --bg-secondary: #ffffff;
-        --bg-tertiary: #000000;
-        --text-primary: #ffffff;
-        --text-secondary: #ffff00;
-        --accent: #00ff00;
-        --accent-hover: #00cc00;
-        --border: #ffffff;
-        --shadow: none;
-    }
-
-    [data-theme="high-contrast-dark"] {
-        --bg-primary: #000000;
-        --bg-secondary: #1a1a1a;
-        --bg-tertiary: #2a2a2a;
-        --text-primary: #ffffff;
-        --text-secondary: #ffff00;
-        --accent: #00ffff;
-        --accent-hover: #00cccc;
-        --danger: #ff0000;
-        --warning: #ffaa00;
-        --success: #00ff00;
-        --border: #ffffff;
-        --shadow: none;
-    }
-
-    /* Base Styles */
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        background-color: var(--bg-primary);
-        color: var(--text-primary);
-        line-height: 1.6;
-        transition: all 0.3s ease;
-    }
-
-    /* Comfort Setup Screen */
-    .comfort-setup {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .comfort-card {
-        background: var(--bg-secondary);
-        padding: 40px;
-        border-radius: 12px;
-        box-shadow: 0 4px 12px var(--shadow);
-        max-width: 600px;
-        width: 100%;
-        text-align: center;
-    }
-
-    .comfort-card h1 {
-        font-size: 2rem;
-        margin-bottom: 10px;
-        color: var(--accent);
-    }
-
-    .comfort-card h2 {
-        font-size: 1.8rem;
-        margin-bottom: 15px;
-        color: var(--accent);
-    }
-
-    .comfort-card p {
-        font-size: 1.1rem;
-        margin-bottom: 30px;
-        color: var(--text-secondary);
-    }
-
-    .theme-options {
-        display: flex;
-        gap: 15px;
-        justify-content: center;
-        margin-bottom: 30px;
-        flex-wrap: wrap;
-    }
-
-    .theme-btn {
-        padding: 15px 25px;
-        border: 2px solid var(--border);
-        background: var(--bg-tertiary);
-        color: var(--text-primary);
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 1rem;
-    }
-
-    .theme-btn:hover {
-        border-color: var(--accent);
-        transform: translateY(-2px);
-    }
-
-    .theme-btn.active {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
-    }
-
-    .font-size-control {
-        margin: 30px 0;
-    }
-
-    .font-size-control label {
-        display: block;
-        margin-bottom: 10px;
-        font-weight: 600;
-    }
-
-    .font-slider {
-        display: flex;
-        align-items: center;
-        gap: 15px;
-        justify-content: center;
-    }
-
-    .font-slider input[type="range"] {
-        width: 200px;
-    }
-
-    .continue-btn {
-        background: var(--accent);
-        color: white;
-        padding: 15px 40px;
-        border: none;
-        border-radius: 8px;
-        font-size: 1.1rem;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        margin-top: 20px;
-    }
-
-    .continue-btn:hover {
-        background: var(--accent-hover);
-        transform: translateY(-2px);
-    }
-
-    .continue-btn:disabled {
-        opacity: 0.5;
-        cursor: not-allowed;
-    }
-
-    /* Form Styles */
-    .form-group {
-        margin-bottom: 20px;
-        text-align: left;
-    }
-    
-    .form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: 600;
-        color: var(--text-primary);
-    }
-    
-    .form-group input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid var(--border);
-        border-radius: 6px;
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        font-size: 1rem;
-    }
-    
-    .form-group small {
-        display: block;
-        margin-top: 5px;
-        color: var(--text-secondary);
-        font-size: 0.9rem;
-    }
-
-    /* Account Setup Screen */
-    .account-setup {
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    /* Main App Layout */
-    .app-container {
-        display: none;
-        min-height: 100vh;
-        background: var(--bg-primary);
-    }
-
-    /* Header */
-    .header {
-        background: var(--bg-secondary);
-        padding: 15px 20px;
-        border-bottom: 1px solid var(--border);
-        position: sticky;
-        top: 0;
-        z-index: 100;
-    }
-
-    .header-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .logo {
-        font-size: 1.5rem;
-        font-weight: bold;
-        color: var(--accent);
-    }
-
-    .bridge-builder-status {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 16px;
-        background: var(--bg-tertiary);
-        border-radius: 20px;
-    }
-
-    .status-dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background: var(--success);
-        animation: pulse 2s infinite;
-    }
-
-    .status-dot.offline {
-        background: var(--warning);
-        animation: none;
-    }
-
-    @keyframes pulse {
-        0% { opacity: 1; }
-        50% { opacity: 0.6; }
-        100% { opacity: 1; }
-    }
-
-    /* Circles Navigation */
-    .circles-nav {
-        background: var(--bg-secondary);
-        padding: 40px 20px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .circles-nav h2 {
-        text-align: center;
-        color: var(--accent);
-        margin-bottom: 30px;
-        max-width: 1200px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .circles-nav p {
-        text-align: center;
-        color: var(--text-secondary);
-        margin-bottom: 30px;
-        max-width: 800px;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .circles-container {
-        max-width: 1200px;
-        margin: 0 auto;
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
-        gap: 15px;
-        justify-items: center;
-        padding: 0 20px;
-    }
-    
-    @media (min-width: 768px) and (max-width: 1024px) {
-        .circles-container {
-            grid-template-columns: repeat(5, 1fr);
-            max-width: 700px;
-        }
-    }
-
-    .circle-btn {
-        padding: 10px;
-        border: 2px solid var(--border);
-        background: var(--bg-primary);
-        color: var(--text-primary);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        font-size: 0.75rem;
-        position: relative;
-        width: 110px;
-        height: 110px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        flex-direction: column;
-        line-height: 1.2;
-    }
-
-    .circle-btn span.subtitle {
-        font-size: 0.65rem;
-        color: var(--text-secondary);
-        margin-top: 2px;
-    }
-
-    .circle-btn:hover {
-        border-color: var(--accent);
-        transform: translateY(-2px);
-    }
-
-    .circle-btn.active {
-        background: var(--accent);
-        color: white;
-        border-color: var(--accent);
-    }
-
-    .circle-btn.locked {
-        opacity: 0.9;
-        cursor: pointer;
-    }
-
-    .circle-btn .lock-icon {
-        font-size: 0.8rem;
-        margin-left: 5px;
-    }
-
-    .circle-btn .key-icon {
-        font-size: 0.9rem;
-        margin-left: 5px;
-        color: #FFD700 !important;
-        text-shadow: 0 0 3px #FFD700, 0 0 5px rgba(255, 215, 0, 0.8);
-        filter: brightness(1.5);
-    }
-    
-    [data-theme="dark"] .circle-btn .key-icon,
-    [data-theme="high-contrast-dark"] .circle-btn .key-icon {
-        color: #FFD700 !important;
-        text-shadow: 0 0 3px #FFD700, 0 0 8px #FFD700;
-        filter: brightness(2);
-    }
-
-    /* Main Content Area */
-    .main-content {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 20px;
-        padding-top: 0;
-    }
-
-    .welcome-message {
-        background: var(--bg-secondary);
-        padding: 30px;
-        border-radius: 12px;
-        text-align: center;
-        margin-bottom: 30px;
-    }
-
-    .welcome-message h2 {
-        color: var(--accent);
-        margin-bottom: 15px;
-    }
-
-    /* Crisis Alert */
-    .crisis-alert {
-        background: var(--warning);
-        color: white;
-        padding: 15px 20px;
-        border-radius: 8px;
-        margin-bottom: 20px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .crisis-alert .icon {
-        font-size: 1.5rem;
-    }
-
-    /* Circle Content */
-    .circle-content {
-        display: none;
-        background: var(--bg-secondary);
-        padding: 30px;
-        border-radius: 12px;
-        margin-top: 20px;
-    }
-
-    .circle-content.active {
-        display: block;
-    }
-
-    .circle-header {
-        margin-bottom: 20px;
-        padding-bottom: 20px;
-        border-bottom: 1px solid var(--border);
-    }
-
-    .circle-header h3 {
-        color: var(--accent);
-        margin-bottom: 10px;
-    }
-
-    .circle-description {
-        color: var(--text-secondary);
-    }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-        .comfort-card {
-            padding: 25px;
-        }
-        
-        .theme-options {
-            flex-direction: column;
-            width: 100%;
-        }
-        
-        .theme-btn {
-            width: 100%;
-        }
-        
-        .header-content {
-            flex-direction: column;
-            text-align: center;
-        }
-    }
-</style>
-```
-
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <!-- Comfort Setup Screen -->
@@ -487,7 +14,6 @@
             <h1>Welcome to the ThriveLine Ecosystem</h1>
             <p>Before we even ask your name, let's get you comfortable</p>
 
-```
         <div class="theme-options">
             <button class="theme-btn" onclick="setTheme('light')">☀️ Light Mode</button>
             <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark Mode</button>
@@ -509,7 +35,7 @@
             Is the display comfortable for you?
         </p>
         
-        <button class="continue-btn" id="continueBtn" disabled onclick="showApp()">
+        <button class="continue-btn" id="continueBtn" disabled onclick="showAccountSetup()">
             Yes, continue
         </button>
     </div>
@@ -548,15 +74,179 @@
     </div>
 </div>
 
+<!-- Community Networking Explanation -->
+<div class="community-explanation" id="communityExplanation" style="display: none;">
+    <div class="comfort-card">
+        <h2>Welcome to Community Networking</h2>
+        <p class="subtitle">ThriveLine works differently than social media:</p>
+        
+        <div class="comparison-grid">
+            <div class="comparison-card what-we-dont">
+                <h3>❌ What We DON'T Have:</h3>
+                <ul>
+                    <li>Individual profiles</li>
+                    <li>Friend lists</li>
+                    <li>Photo albums</li>
+                    <li>Status updates</li>
+                    <li>Location check-ins</li>
+                    <li>Personal feeds</li>
+                    <li>Follower counts</li>
+                </ul>
+            </div>
+            
+            <div class="comparison-card what-we-do">
+                <h3>✅ What We DO Have:</h3>
+                <ul>
+                    <li>Safe community circles</li>
+                    <li>Shared experiences</li>
+                    <li>Bridge Builder support</li>
+                    <li>Truth without judgment</li>
+                    <li>Real connections</li>
+                    <li>Protected identities</li>
+                    <li>Human-centered design</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="safety-message">
+            <strong>Your safety matters:</strong> No one can build a profile about you. 
+            No one can track your location. No one can mine your photos. 
+            You connect through shared experiences, not personal data.
+        </div>
+        
+        <button class="continue-btn" onclick="showWaterLevel()">
+            I understand - continue
+        </button>
+    </div>
+</div>
+
+<!-- Water Level Check -->
+<div class="water-level-check" id="waterLevelCheck" style="display: none;">
+    <div class="comfort-card">
+        <h2>What's Your Current Water Level?</h2>
+        <p class="subtitle">This helps our Bridge Builders prioritize support</p>
+        
+        <div class="water-options">
+            <button class="water-option" onclick="setWaterLevel('rising')">
+                <span class="water-icon">🌊</span>
+                <h3>Rising Tide</h3>
+                <p>I need support soon - emotions or situations are building</p>
+            </button>
+            
+            <button class="water-option" onclick="setWaterLevel('flood')">
+                <span class="water-icon">🌊🌊</span>
+                <h3>Flood Waters</h3>
+                <p>I'm overwhelmed and need to connect with others who understand</p>
+            </button>
+            
+            <button class="water-option" onclick="setWaterLevel('still')">
+                <span class="water-icon">💧</span>
+                <h3>Still Waters</h3>
+                <p>I'm here to offer support to others right now</p>
+            </button>
+        </div>
+        
+        <p class="note">
+            <em>Note: This doesn't give special access - it helps Bridge Builders know who might need support first during the vetting process.</em>
+        </p>
+    </div>
+</div>
+
+<!-- Community Selection -->
+<div class="community-selection" id="communitySelection" style="display: none;">
+    <div class="comfort-card">
+        <h2>Select Your Communities</h2>
+        <p class="subtitle">Choose the communities you'd like to join</p>
+        
+        <div class="community-list">
+            <div class="community-option">
+                <input type="checkbox" id="psychopathy-spectrum" name="community" value="psychopathy-spectrum">
+                <label for="psychopathy-spectrum">
+                    <h3>Psychopathy Spectrum Space</h3>
+                    <p>For families navigating life with children on the psychopathy spectrum, including Cluster B conditions, Conduct Disorder, ODD, and Disruptive Behavior Disorders</p>
+                </label>
+            </div>
+            
+            <div class="coming-soon-section">
+                <h3>Coming Soon:</h3>
+                <ul>
+                    <li>Support Communities for other conditions</li>
+                    <li>Interest-based Communities</li>
+                    <li>Podcast Communities</li>
+                    <li>Professional Communities</li>
+                </ul>
+            </div>
+        </div>
+        
+        <button class="continue-btn" onclick="showRoleSelection()" disabled id="communityBtn">
+            Continue to Role Selection
+        </button>
+    </div>
+</div>
+
+<!-- Role Selection -->
+<div class="role-selection" id="roleSelection" style="display: none;">
+    <div class="comfort-card">
+        <h2>Your Connection to the Psychopathy Spectrum</h2>
+        <p class="subtitle">Select all that apply - many people have multiple connections</p>
+        
+        <div class="role-options">
+            <div class="role-option">
+                <input type="checkbox" id="role-parent" name="role" value="parent">
+                <label for="role-parent">I am a parent of someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-self" name="role" value="self">
+                <label for="role-self">I am on the psychopathy spectrum myself</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-sibling" name="role" value="sibling">
+                <label for="role-sibling">I am a sibling of someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-subjected" name="role" value="subjected">
+                <label for="role-subjected">I have been subjected to abuse by someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-researcher" name="role" value="researcher">
+                <label for="role-researcher">I research the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-journalist" name="role" value="journalist">
+                <label for="role-journalist">I am a journalist covering families navigating the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-support" name="role" value="support">
+                <label for="role-support">I support someone navigating the psychopathy spectrum (Human Support Animal)</label>
+            </div>
+        </div>
+        
+        <button class="continue-btn" onclick="showVettingQuestions()" disabled id="roleBtn">
+            Continue to Vetting Questions
+        </button>
+    </div>
+</div>
+
 <!-- Main App -->
 <div class="app-container" id="appContainer">
     <!-- Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">ThriveLine</div>
-            <div class="bridge-builder-status">
-                <span class="status-dot"></span>
-                <span id="bridgeBuilderStatus">3 Bridge Builders Active</span>
+            <div class="header-controls">
+                <button class="water-state-btn" onclick="updateWaterState()">
+                    💧 Still Waters
+                </button>
+                <div class="bridge-builder-status">
+                    <span class="status-dot"></span>
+                    <span id="bridgeBuilderStatus">3 Bridge Builders Active</span>
+                </div>
             </div>
         </div>
     </header>
@@ -619,225 +309,7 @@
     </main>
 </div>
 
-<script>
-    // Theme Management
-    let themeSelected = false;
-    
-    function setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        localStorage.setItem('theme', theme);
-        
-        // Update active button
-        document.querySelectorAll('.theme-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        
-        // Enable continue button after first theme selection
-        if (!themeSelected) {
-            themeSelected = true;
-            document.getElementById('comfortCheck').style.display = 'block';
-            document.getElementById('continueBtn').disabled = false;
-        }
-    }
-    
-    function setFontSize(size) {
-        document.documentElement.style.fontSize = size + 'px';
-        localStorage.setItem('fontSize', size);
-    }
-    
-    function showApp() {
-        document.getElementById('comfortSetup').style.display = 'none';
-        document.getElementById('accountSetup').style.display = 'block';
-    }
-    
-    function createAccount(event) {
-        event.preventDefault();
-        // In a real app, this would save the account info
-        // For now, just move to the main app
-        document.getElementById('accountSetup').style.display = 'none';
-        document.getElementById('appContainer').style.display = 'block';
-        
-        // Scroll to top of page
-        window.scrollTo(0, 0);
-        
-        // Simulate Bridge Builder status updates
-        updateBridgeBuilderStatus();
-    }
-    
-    function showCircle(circleName) {
-        // Check if circle is locked
-        if (event.target.classList.contains('locked')) {
-            alert('Request Access 🗝️\n\nThis circle requires vetting to keep everyone safe. Click OK to share your story and request access.');
-            return;
-        }
-        
-        // Update active button
-        document.querySelectorAll('.circle-btn').forEach(btn => {
-            btn.classList.remove('active');
-        });
-        event.target.classList.add('active');
-    }
-    
-    function toggleAllDescriptions() {
-        const allDescriptions = document.getElementById('all-descriptions');
-        if (!allDescriptions) {
-            // Create the all descriptions section
-            const descriptionsHTML = `
-                <div id="all-descriptions" style="max-width: 1200px; margin: 0 auto; padding: 20px;">
-                    <h3 style="text-align: center; color: var(--accent); margin-bottom: 30px;">Circle Descriptions & Access Information</h3>
-                    
-                    <div style="display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
-                        <div class="circle-desc-card">
-                            <h4>General Circle</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Daily challenges and nonviolent behaviors. Your home base for support in navigating everyday complexities.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Safety Concerns Circle 🗝️</h4>
-                            <p><em>Requires vetting</em></p>
-                            <p>Physical safety and violence. For families navigating serious safety concerns and physical threats.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Sexual Behaviors Circle 🗝️</h4>
-                            <p><em>Requires vetting</em></p>
-                            <p>A carefully protected space for families dealing with sexual behavior challenges.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Substance Use Circle 🗝️</h4>
-                            <p><em>Requires vetting</em></p>
-                            <p>Support for families navigating substance use concerns in the context of safety and complex decisions.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Superpowers</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Reframe your child's neurological differences as strengths. Discover how traits like fearlessness, low emotionality, or intense focus can become assets. Find career paths and life directions that work WITH your child's wiring, not against it.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Circle of Hope</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Real success stories from real families. Your story could light the way for others.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Community Connection</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Remember who you are beyond being a parent. Connect with others as whole human beings - share your passions, dreams, interests, and the parts of yourself that exist outside the crisis. Rediscover yourself while building real friendships.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Research Hub</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Read existing research, participate in new studies, and bridge the gap between lived experience and academic understanding. Access peer-reviewed studies, share what researchers are missing, and help shape future research directions.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Education Circle</h4>
-                            <p><em>Open to all members</em></p>
-                            <p>Beyond research papers - find books, courses, workshops, and evidence-based strategies. Learn about neurodiversity, legal rights, therapeutic approaches, and what actually works from both professionals and experienced parents.</p>
-                        </div>
-                        
-                        <div class="circle-desc-card">
-                            <h4>Media Circle</h4>
-                            <p><em>Open to all members, limited access for vetted reporters</em></p>
-                            <p>Engage with media coverage of our families. Share articles and videos, flag harmful narratives in "Media Got It Wrong," and help reporters understand through "What I Wish Media Understood." Vetted reporters can request interviews with parent consent.</p>
-                        </div>
-                    </div>
-                </div>
-            `;
-            
-            const mainContent = document.querySelector('.main-content');
-            mainContent.insertAdjacentHTML('afterbegin', descriptionsHTML);
-            
-            // Add styles for the cards
-            const style = document.createElement('style');
-            style.textContent = `
-                .circle-desc-card {
-                    background: var(--bg-secondary);
-                    padding: 20px;
-                    border-radius: 8px;
-                    border: 1px solid var(--border);
-                }
-                .circle-desc-card h4 {
-                    color: var(--accent);
-                    margin-bottom: 10px;
-                }
-                .circle-desc-card p {
-                    color: var(--text-secondary);
-                    margin-bottom: 8px;
-                }
-            `;
-            document.head.appendChild(style);
-            
-            // Scroll to descriptions
-            allDescriptions.scrollIntoView({ behavior: 'smooth' });
-            
-            // Update button text
-            event.target.textContent = 'Hide Circle Descriptions ↑';
-        } else {
-            // Toggle visibility
-            if (allDescriptions.style.display === 'none') {
-                allDescriptions.style.display = 'block';
-                allDescriptions.scrollIntoView({ behavior: 'smooth' });
-                event.target.textContent = 'Hide Circle Descriptions ↑';
-            } else {
-                allDescriptions.style.display = 'none';
-                event.target.textContent = 'View Expanded Circle Descriptions ↓';
-            }
-        }
-    }
-    
-    function updateBridgeBuilderStatus() {
-        const statuses = [
-            { count: 3, text: "3 Bridge Builders Active", online: true },
-            { count: 1, text: "1 Bridge Builder Active", online: true },
-            { count: 0, text: "Bridge Builders Offline - Responses typically within ~6 hours", online: false }
-        ];
-        
-        // Simulate random status (in real app, this would be from server)
-        setInterval(() => {
-            const status = statuses[Math.floor(Math.random() * statuses.length)];
-            const statusEl = document.getElementById('bridgeBuilderStatus');
-            const dotEl = document.querySelector('.status-dot');
-            
-            statusEl.textContent = status.text;
-            if (status.online) {
-                dotEl.classList.remove('offline');
-            } else {
-                dotEl.classList.add('offline');
-            }
-        }, 30000); // Update every 30 seconds
-    }
-    
-    // Load saved preferences
-    window.onload = function() {
-        const savedTheme = localStorage.getItem('theme');
-        const savedFontSize = localStorage.getItem('fontSize');
-        
-        if (savedTheme) {
-            setTheme(savedTheme);
-            const themeMap = {
-                'light': 1,
-                'dark': 2,
-                'high-contrast': 3,
-                'high-contrast-dark': 4
-            };
-            const btnIndex = themeMap[savedTheme] || 1;
-            document.querySelector(`.theme-btn:nth-child(${btnIndex})`).classList.add('active');
-        }
-        
-        if (savedFontSize) {
-            document.getElementById('fontSize').value = savedFontSize;
-            setFontSize(savedFontSize);
-        }
-    }
-</script>
-```
+<script src="script.js"></script>
 
 </body>
 </html>
