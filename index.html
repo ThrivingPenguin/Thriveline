@@ -5,7 +5,398 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThriveLine - Building Communities That Thrive</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* CSS Variables for Theming */
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f5f5f5;
+            --bg-tertiary: #e0e0e0;
+            --text-primary: #212121;
+            --text-secondary: #666666;
+            --accent: #2e7d32;
+            --accent-hover: #1b5e20;
+            --danger: #d32f2f;
+            --warning: #f57c00;
+            --success: #388e3c;
+            --border: #dddddd;
+            --shadow: rgba(0,0,0,0.1);
+        }
+
+```
+    [data-theme="dark"] {
+        --bg-primary: #121212;
+        --bg-secondary: #1e1e1e;
+        --bg-tertiary: #2d2d2d;
+        --text-primary: #ffffff;
+        --text-secondary: #b0b0b0;
+        --accent: #4caf50;
+        --accent-hover: #66bb6a;
+        --border: #333333;
+        --shadow: rgba(0,0,0,0.3);
+    }
+
+    [data-theme="high-contrast"] {
+        --bg-primary: #000000;
+        --bg-secondary: #ffffff;
+        --bg-tertiary: #000000;
+        --text-primary: #ffffff;
+        --text-secondary: #ffff00;
+        --accent: #00ff00;
+        --accent-hover: #00cc00;
+        --border: #ffffff;
+        --shadow: none;
+    }
+
+    [data-theme="high-contrast-dark"] {
+        --bg-primary: #000000;
+        --bg-secondary: #1a1a1a;
+        --bg-tertiary: #2a2a2a;
+        --text-primary: #ffffff;
+        --text-secondary: #ffff00;
+        --accent: #00ffff;
+        --accent-hover: #00cccc;
+        --danger: #ff0000;
+        --warning: #ffaa00;
+        --success: #00ff00;
+        --border: #ffffff;
+        --shadow: none;
+    }
+
+    /* Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        background-color: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: all 0.3s ease;
+    }
+
+    /* All setup screens */
+    .comfort-setup, .account-setup, .community-explanation, .water-level-check, .community-selection, .role-selection {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+
+    .comfort-card {
+        background: var(--bg-secondary);
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px var(--shadow);
+        max-width: 600px;
+        width: 100%;
+        text-align: center;
+    }
+
+    .comfort-card h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+        color: var(--accent);
+    }
+
+    .comfort-card h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+        color: var(--accent);
+    }
+
+    .comfort-card p {
+        font-size: 1.1rem;
+        margin-bottom: 30px;
+        color: var(--text-secondary);
+    }
+
+    .theme-options {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+    }
+
+    .theme-btn {
+        padding: 15px 25px;
+        border: 2px solid var(--border);
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+    }
+
+    .theme-btn:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
+
+    .theme-btn.active {
+        background: var(--accent);
+        color: white;
+        border-color: var(--accent);
+    }
+
+    .font-size-control {
+        margin: 30px 0;
+    }
+
+    .font-size-control label {
+        display: block;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    .font-slider {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .font-slider input[type="range"] {
+        width: 200px;
+    }
+
+    .continue-btn {
+        background: var(--accent);
+        color: white;
+        padding: 15px 40px;
+        border: none;
+        border-radius: 8px;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 20px;
+    }
+
+    .continue-btn:hover:not(:disabled) {
+        background: var(--accent-hover);
+        transform: translateY(-2px);
+    }
+
+    .continue-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    /* Form Styles */
+    .form-group {
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: 600;
+        color: var(--text-primary);
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        font-size: 1rem;
+    }
+
+    .form-group small {
+        display: block;
+        margin-top: 5px;
+        color: var(--text-secondary);
+        font-size: 0.9rem;
+    }
+
+    /* Community Explanation Styles */
+    .comparison-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+        margin-bottom: 30px;
+        text-align: left;
+    }
+
+    .comparison-card {
+        background: var(--bg-primary);
+        padding: 20px;
+        border-radius: 8px;
+        border: 1px solid var(--border);
+    }
+
+    .comparison-card h3 {
+        margin-bottom: 15px;
+        font-size: 1.2rem;
+    }
+
+    .comparison-card ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    .comparison-card li {
+        padding: 5px 0;
+    }
+
+    .what-we-dont h3 {
+        color: var(--danger);
+    }
+
+    .what-we-do h3 {
+        color: var(--success);
+    }
+
+    .safety-message {
+        background: var(--bg-tertiary);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    /* Water Level Styles */
+    .water-options {
+        display: grid;
+        gap: 15px;
+        margin-bottom: 20px;
+    }
+
+    .water-option {
+        background: var(--bg-primary);
+        border: 2px solid var(--border);
+        padding: 20px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: left;
+    }
+
+    .water-option:hover {
+        border-color: var(--accent);
+        transform: translateY(-2px);
+    }
+
+    .water-option.selected {
+        border-color: var(--accent);
+        background: var(--bg-tertiary);
+    }
+
+    .water-icon {
+        font-size: 2rem;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    .water-option h3 {
+        margin-bottom: 5px;
+        color: var(--text-primary);
+    }
+
+    .water-option p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    .note {
+        background: var(--bg-tertiary);
+        padding: 15px;
+        border-radius: 6px;
+        margin-top: 20px;
+        font-size: 0.9rem;
+        text-align: left;
+    }
+
+    /* Community Selection Styles */
+    .community-list {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .community-option {
+        background: var(--bg-primary);
+        padding: 20px;
+        border-radius: 8px;
+        border: 2px solid var(--border);
+        margin-bottom: 15px;
+        transition: all 0.3s ease;
+    }
+
+    .community-option.selected {
+        border-color: var(--accent);
+        background: var(--bg-tertiary);
+    }
+
+    .community-option h3 {
+        margin-bottom: 5px;
+        color: var(--accent);
+    }
+
+    .community-option p {
+        margin: 0;
+        color: var(--text-secondary);
+        font-size: 0.95rem;
+    }
+
+    .coming-soon-section {
+        background: var(--bg-tertiary);
+        padding: 20px;
+        border-radius: 8px;
+        margin-top: 20px;
+    }
+
+    /* Main App */
+    .app-container {
+        display: none;
+        min-height: 100vh;
+        background: var(--bg-primary);
+    }
+
+    .header {
+        background: var(--bg-secondary);
+        padding: 15px 20px;
+        border-bottom: 1px solid var(--border);
+    }
+
+    .header-content {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: var(--accent);
+    }
+
+    .header-controls {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+    }
+
+    .water-state-btn {
+        background: var(--bg-tertiary);
+        border: 1px solid var(--border);
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+    }
+</style>
+```
+
 </head>
 <body>
     <!-- Comfort Setup Screen -->
@@ -14,11 +405,12 @@
             <h1>Welcome to the ThriveLine Ecosystem</h1>
             <p>Before we even ask your name, let's get you comfortable</p>
 
+```
         <div class="theme-options">
-            <button class="theme-btn" onclick="setTheme('light')">☀️ Light Mode</button>
-            <button class="theme-btn" onclick="setTheme('dark')">🌙 Dark Mode</button>
-            <button class="theme-btn" onclick="setTheme('high-contrast')">👁️ High Contrast</button>
-            <button class="theme-btn" onclick="setTheme('high-contrast-dark')">🌑 High Contrast Dark</button>
+            <button class="theme-btn" onclick="setTheme('light', this)">☀️ Light Mode</button>
+            <button class="theme-btn" onclick="setTheme('dark', this)">🌙 Dark Mode</button>
+            <button class="theme-btn" onclick="setTheme('high-contrast', this)">👁️ High Contrast</button>
+            <button class="theme-btn" onclick="setTheme('high-contrast-dark', this)">🌑 High Contrast Dark</button>
         </div>
         
         <div class="font-size-control">
@@ -78,7 +470,7 @@
 <div class="community-explanation" id="communityExplanation" style="display: none;">
     <div class="comfort-card">
         <h2>Welcome to Community Networking</h2>
-        <p class="subtitle">ThriveLine works differently than social media:</p>
+        <p>ThriveLine works differently than social media:</p>
         
         <div class="comparison-grid">
             <div class="comparison-card what-we-dont">
@@ -124,22 +516,22 @@
 <div class="water-level-check" id="waterLevelCheck" style="display: none;">
     <div class="comfort-card">
         <h2>What's Your Current Water Level?</h2>
-        <p class="subtitle">This helps our Bridge Builders prioritize support</p>
+        <p>This helps our Bridge Builders prioritize support</p>
         
         <div class="water-options">
-            <button class="water-option" onclick="setWaterLevel('rising')">
+            <button class="water-option" onclick="setWaterLevel('rising', this)">
                 <span class="water-icon">🌊</span>
                 <h3>Rising Tide</h3>
                 <p>I need support soon - emotions or situations are building</p>
             </button>
             
-            <button class="water-option" onclick="setWaterLevel('flood')">
+            <button class="water-option" onclick="setWaterLevel('flood', this)">
                 <span class="water-icon">🌊🌊</span>
                 <h3>Flood Waters</h3>
                 <p>I'm overwhelmed and need to connect with others who understand</p>
             </button>
             
-            <button class="water-option" onclick="setWaterLevel('still')">
+            <button class="water-option" onclick="setWaterLevel('still', this)">
                 <span class="water-icon">💧</span>
                 <h3>Still Waters</h3>
                 <p>I'm here to offer support to others right now</p>
@@ -152,164 +544,63 @@
     </div>
 </div>
 
-<!-- Community Selection -->
-<div class="community-selection" id="communitySelection" style="display: none;">
-    <div class="comfort-card">
-        <h2>Select Your Communities</h2>
-        <p class="subtitle">Choose the communities you'd like to join</p>
+<script>
+    // Theme Management
+    let themeSelected = false;
+    
+    function setTheme(theme, button) {
+        document.documentElement.setAttribute('data-theme', theme);
+        localStorage.setItem('theme', theme);
         
-        <div class="community-list">
-            <div class="community-option">
-                <input type="checkbox" id="psychopathy-spectrum" name="community" value="psychopathy-spectrum">
-                <label for="psychopathy-spectrum">
-                    <h3>Psychopathy Spectrum Space</h3>
-                    <p>For families navigating life with children on the psychopathy spectrum, including Cluster B conditions, Conduct Disorder, ODD, and Disruptive Behavior Disorders</p>
-                </label>
-            </div>
-            
-            <div class="coming-soon-section">
-                <h3>Coming Soon:</h3>
-                <ul>
-                    <li>Support Communities for other conditions</li>
-                    <li>Interest-based Communities</li>
-                    <li>Podcast Communities</li>
-                    <li>Professional Communities</li>
-                </ul>
-            </div>
-        </div>
+        // Update active button
+        document.querySelectorAll('.theme-btn').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        button.classList.add('active');
         
-        <button class="continue-btn" onclick="showRoleSelection()" disabled id="communityBtn">
-            Continue to Role Selection
-        </button>
-    </div>
-</div>
-
-<!-- Role Selection -->
-<div class="role-selection" id="roleSelection" style="display: none;">
-    <div class="comfort-card">
-        <h2>Your Connection to the Psychopathy Spectrum</h2>
-        <p class="subtitle">Select all that apply - many people have multiple connections</p>
+        // Enable continue button after first theme selection
+        if (!themeSelected) {
+            themeSelected = true;
+            document.getElementById('comfortCheck').style.display = 'block';
+            document.getElementById('continueBtn').disabled = false;
+        }
+    }
+    
+    function setFontSize(size) {
+        document.documentElement.style.fontSize = size + 'px';
+        localStorage.setItem('fontSize', size);
+    }
+    
+    function showAccountSetup() {
+        document.getElementById('comfortSetup').style.display = 'none';
+        document.getElementById('accountSetup').style.display = 'flex';
+    }
+    
+    function createAccount(event) {
+        event.preventDefault();
+        document.getElementById('accountSetup').style.display = 'none';
+        document.getElementById('communityExplanation').style.display = 'flex';
+    }
+    
+    function showWaterLevel() {
+        document.getElementById('communityExplanation').style.display = 'none';
+        document.getElementById('waterLevelCheck').style.display = 'flex';
+    }
+    
+    function setWaterLevel(level, button) {
+        // Update selected state
+        document.querySelectorAll('.water-option').forEach(btn => {
+            btn.classList.remove('selected');
+        });
+        button.classList.add('selected');
         
-        <div class="role-options">
-            <div class="role-option">
-                <input type="checkbox" id="role-parent" name="role" value="parent">
-                <label for="role-parent">I am a parent of someone on the psychopathy spectrum</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-self" name="role" value="self">
-                <label for="role-self">I am on the psychopathy spectrum myself</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-sibling" name="role" value="sibling">
-                <label for="role-sibling">I am a sibling of someone on the psychopathy spectrum</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-subjected" name="role" value="subjected">
-                <label for="role-subjected">I have been subjected to abuse by someone on the psychopathy spectrum</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-researcher" name="role" value="researcher">
-                <label for="role-researcher">I research the psychopathy spectrum</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-journalist" name="role" value="journalist">
-                <label for="role-journalist">I am a journalist covering families navigating the psychopathy spectrum</label>
-            </div>
-            
-            <div class="role-option">
-                <input type="checkbox" id="role-support" name="role" value="support">
-                <label for="role-support">I support someone navigating the psychopathy spectrum (Human Support Animal)</label>
-            </div>
-        </div>
-        
-        <button class="continue-btn" onclick="showVettingQuestions()" disabled id="roleBtn">
-            Continue to Vetting Questions
-        </button>
-    </div>
-</div>
-
-<!-- Main App -->
-<div class="app-container" id="appContainer">
-    <!-- Header -->
-    <header class="header">
-        <div class="header-content">
-            <div class="logo">ThriveLine</div>
-            <div class="header-controls">
-                <button class="water-state-btn" onclick="updateWaterState()">
-                    💧 Still Waters
-                </button>
-                <div class="bridge-builder-status">
-                    <span class="status-dot"></span>
-                    <span id="bridgeBuilderStatus">3 Bridge Builders Active</span>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Circles Navigation -->
-    <nav class="circles-nav">
-        <h2>Welcome to Your ThriveLine Community</h2>
-        <p>You're in a safe haven where truth is transformation and support flows freely.</p>
-        <div class="circles-container">
-            <button class="circle-btn active" onclick="showCircle('general')">
-                General<br>Circle
-                <span class="subtitle">Nonviolent Challenges</span>
-            </button>
-            <button class="circle-btn locked" onclick="showCircle('safety')">
-                Safety<br>Concerns <span class="key-icon">🗝️</span>
-                <span class="subtitle">Request<br>Access</span>
-            </button>
-            <button class="circle-btn locked" onclick="showCircle('sexual')">
-                Sexual<br>Behaviors <span class="key-icon">🗝️</span>
-                <span class="subtitle">Request<br>Access</span>
-            </button>
-            <button class="circle-btn locked" onclick="showCircle('substance')">
-                Substance<br>Use <span class="key-icon">🗝️</span>
-                <span class="subtitle">Request<br>Access</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('superpowers')">
-                Superpowers
-                <span class="subtitle">Your Child's Unique Gifts</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('success')">
-                Circle of<br>Hope
-                <span class="subtitle">Success Stories</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('connection')">
-                Community<br>Connection
-                <span class="subtitle">Life Beyond Parenting</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('research')">
-                Research<br>Hub
-                <span class="subtitle">Evidence & Change</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('education')">
-                Education<br>Circle
-                <span class="subtitle">Learn & Grow</span>
-            </button>
-            <button class="circle-btn" onclick="showCircle('media')">
-                Media<br>Circle
-                <span class="subtitle">Coverage & Connection</span>
-            </button>
-        </div>
-        <div style="text-align: center; margin-top: 30px;">
-            <button class="continue-btn" style="background: var(--accent); color: white; padding: 10px 30px; font-size: 0.95rem;" onclick="toggleAllDescriptions()">
-                View Expanded Circle Descriptions ↓
-            </button>
-        </div>
-    </nav>
-
-    <!-- Main Content -->
-    <main class="main-content">
-    </main>
-</div>
-
-<script src="script.js"></script>
+        // For now, just alert - we'll add the next screens
+        setTimeout(() => {
+            alert('Water level selected: ' + level + '\n\nNext screens (Community Selection, Role Selection, Vetting Questions) coming soon!');
+        }, 500);
+    }
+</script>
+```
 
 </body>
 </html>
