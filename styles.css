@@ -591,3 +591,62 @@ filter: brightness(1.5);
 [data-theme=“high-contrast-dark”] .circle-btn .key-icon {
 color: #FFD700 !important;
 text-shadow: 0 0 3
+css
+px #FFD700, 0 0 8px #FFD700;
+    filter: brightness(2);
+}
+
+/* Main Content Area */
+.main-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.welcome-message {
+    background: var(--bg-secondary);
+    padding: 30px;
+    border-radius: 12px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.welcome-message h2 {
+    color: var(--accent);
+    margin-bottom: 15px;
+}
+
+/* Crisis Alert */
+.crisis-alert {
+    background: var(--warning);
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.crisis-alert .icon {
+    font-size: 1.5rem;
+}
+
+/* Circle Content */
+.circle-content {
+    display: none;
+    background: var(--bg-secondary);
+    padding: 30px;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+.circle-content.active {
+    display: block;
+}
+
+.circle-header {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border​​​​​​​​​​​​​​​​
