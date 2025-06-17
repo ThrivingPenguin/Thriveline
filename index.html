@@ -22,7 +22,6 @@
             --shadow: rgba(0,0,0,0.1);
         }
 
-```
     [data-theme="dark"] {
         --bg-primary: #121212;
         --bg-secondary: #1e1e1e;
@@ -91,7 +90,7 @@
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 4px 12px var(--shadow);
-        max-width: 600px;
+        max-width: 700px;
         width: 100%;
         text-align: center;
     }
@@ -223,19 +222,23 @@
         grid-template-columns: 1fr 1fr;
         gap: 20px;
         margin-bottom: 30px;
-        text-align: left;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
     .comparison-card {
         background: var(--bg-primary);
-        padding: 20px;
-        border-radius: 8px;
-        border: 1px solid var(--border);
+        padding: 25px;
+        border-radius: 12px;
+        border: 2px solid var(--border);
+        text-align: left;
     }
 
     .comparison-card h3 {
-        margin-bottom: 15px;
+        margin-bottom: 20px;
         font-size: 1.2rem;
+        text-align: center;
     }
 
     .comparison-card ul {
@@ -244,11 +247,25 @@
     }
 
     .comparison-card li {
-        padding: 5px 0;
+        padding: 10px 15px;
+        border-bottom: 1px solid var(--border);
+        font-size: 0.95rem;
+    }
+
+    .comparison-card li:last-child {
+        border-bottom: none;
+    }
+
+    .what-we-dont {
+        border-color: rgba(211, 47, 47, 0.3);
     }
 
     .what-we-dont h3 {
         color: var(--danger);
+    }
+
+    .what-we-do {
+        border-color: rgba(56, 142, 60, 0.3);
     }
 
     .what-we-do h3 {
@@ -257,10 +274,14 @@
 
     .safety-message {
         background: var(--bg-tertiary);
-        padding: 20px;
-        border-radius: 8px;
+        padding: 25px;
+        border-radius: 12px;
         margin-top: 20px;
-        text-align: left;
+        text-align: center;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        font-size: 1.05rem;
     }
 
     /* Water Level Styles */
@@ -329,6 +350,7 @@
         border: 2px solid var(--border);
         margin-bottom: 15px;
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
     .community-option.selected {
@@ -352,6 +374,51 @@
         padding: 20px;
         border-radius: 8px;
         margin-top: 20px;
+    }
+
+    .coming-soon-section h3 {
+        color: var(--text-secondary);
+        margin-bottom: 10px;
+    }
+
+    .coming-soon-section ul {
+        list-style: none;
+        padding-left: 10px;
+    }
+
+    .coming-soon-section li {
+        padding: 3px 0;
+        color: var(--text-secondary);
+    }
+
+    /* Role Selection Styles */
+    .role-options {
+        text-align: left;
+        margin-bottom: 20px;
+    }
+
+    .role-option {
+        background: var(--bg-primary);
+        padding: 15px;
+        border-radius: 6px;
+        margin-bottom: 10px;
+        border: 2px solid var(--border);
+        transition: all 0.3s ease;
+    }
+
+    .role-option input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .role-option label {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+    }
+
+    .role-option:has(input:checked) {
+        border-color: var(--accent);
+        background: var(--bg-tertiary);
     }
 
     /* Main App */
@@ -394,8 +461,27 @@
         border-radius: 20px;
         cursor: pointer;
     }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .comfort-card {
+            padding: 25px;
+        }
+        
+        .theme-options {
+            flex-direction: column;
+            width: 100%;
+        }
+        
+        .theme-btn {
+            width: 100%;
+        }
+        
+        .comparison-grid {
+            grid-template-columns: 1fr;
+        }
+    }
 </style>
-```
 
 </head>
 <body>
@@ -405,7 +491,6 @@
             <h1>Welcome to the ThriveLine Ecosystem</h1>
             <p>Before we even ask your name, let's get you comfortable</p>
 
-```
         <div class="theme-options">
             <button class="theme-btn" onclick="setTheme('light', this)">☀️ Light Mode</button>
             <button class="theme-btn" onclick="setTheme('dark', this)">🌙 Dark Mode</button>
@@ -506,47 +591,95 @@
             You connect through shared experiences, not personal data.
         </div>
         
-        <button class="continue-btn" onclick="showWaterLevel()">
+        <button class="continue-btn" onclick="showCommunitySelection()">
             I understand - continue
         </button>
     </div>
 </div>
 
-<!-- Water Level Check -->
-<div class="water-level-check" id="waterLevelCheck" style="display: none;">
+<!-- Community Selection -->
+<div class="community-selection" id="communitySelection" style="display: none;">
     <div class="comfort-card">
-        <h2>What's Your Current Water Level?</h2>
-        <p>This helps our Bridge Builders prioritize support</p>
+        <h2>Select Your Communities</h2>
+        <p>Choose the communities you'd like to join</p>
         
-        <div class="water-options">
-            <button class="water-option" onclick="setWaterLevel('rising', this)">
-                <span class="water-icon">🌊</span>
-                <h3>Rising Tide</h3>
-                <p>I need support soon - emotions or situations are building</p>
-            </button>
+        <div class="community-list">
+            <div class="community-option" onclick="toggleCommunity(this)" data-community="psychopathy-spectrum">
+                <h3>Psychopathy Spectrum Space</h3>
+                <p>For families navigating life with children on the psychopathy spectrum, including Cluster B conditions, Conduct Disorder, ODD, and Disruptive Behavior Disorders</p>
+            </div>
             
-            <button class="water-option" onclick="setWaterLevel('flood', this)">
-                <span class="water-icon">🌊🌊</span>
-                <h3>Flood Waters</h3>
-                <p>I'm overwhelmed and need to connect with others who understand</p>
-            </button>
-            
-            <button class="water-option" onclick="setWaterLevel('still', this)">
-                <span class="water-icon">💧</span>
-                <h3>Still Waters</h3>
-                <p>I'm here to offer support to others right now</p>
-            </button>
+            <div class="coming-soon-section">
+                <h3>Coming Soon:</h3>
+                <ul>
+                    <li>Support Communities for other conditions</li>
+                    <li>Interest-based Communities</li>
+                    <li>Podcast Communities</li>
+                    <li>Professional Communities</li>
+                </ul>
+            </div>
         </div>
         
-        <p class="note">
-            <em>Note: This doesn't give special access - it helps Bridge Builders know who might need support first during the vetting process.</em>
-        </p>
+        <button class="continue-btn" onclick="showRoleSelection()" disabled id="communityBtn">
+            Continue to Role Selection
+        </button>
+    </div>
+</div>
+
+<!-- Role Selection -->
+<div class="role-selection" id="roleSelection" style="display: none;">
+    <div class="comfort-card">
+        <h2>Your Connection to the Psychopathy Spectrum</h2>
+        <p>Select all that apply - many people have multiple connections</p>
+        
+        <div class="role-options">
+            <div class="role-option">
+                <input type="checkbox" id="role-parent" name="role" value="parent" onchange="updateRoles()">
+                <label for="role-parent">I am a parent of someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-self" name="role" value="self" onchange="updateRoles()">
+                <label for="role-self">I am on the psychopathy spectrum myself</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-sibling" name="role" value="sibling" onchange="updateRoles()">
+                <label for="role-sibling">I am a sibling of someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-subjected" name="role" value="subjected" onchange="updateRoles()">
+                <label for="role-subjected">I have been subjected to abuse by someone on the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-researcher" name="role" value="researcher" onchange="updateRoles()">
+                <label for="role-researcher">I research the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-journalist" name="role" value="journalist" onchange="updateRoles()">
+                <label for="role-journalist">I am a journalist covering families navigating the psychopathy spectrum</label>
+            </div>
+            
+            <div class="role-option">
+                <input type="checkbox" id="role-support" name="role" value="support" onchange="updateRoles()">
+                <label for="role-support">I support someone navigating the psychopathy spectrum (Human Support Animal)</label>
+            </div>
+        </div>
+        
+        <button class="continue-btn" onclick="showVettingQuestions()" disabled id="roleBtn">
+            Continue to Vetting Questions
+        </button>
     </div>
 </div>
 
 <script>
     // Theme Management
     let themeSelected = false;
+    let selectedCommunities = [];
+    let selectedRoles = [];
     
     function setTheme(theme, button) {
         document.documentElement.setAttribute('data-theme', theme);
@@ -574,33 +707,53 @@
     function showAccountSetup() {
         document.getElementById('comfortSetup').style.display = 'none';
         document.getElementById('accountSetup').style.display = 'flex';
+        window.scrollTo(0, 0);
     }
     
     function createAccount(event) {
         event.preventDefault();
         document.getElementById('accountSetup').style.display = 'none';
         document.getElementById('communityExplanation').style.display = 'flex';
+        window.scrollTo(0, 0);
     }
     
-    function showWaterLevel() {
+    function showCommunitySelection() {
         document.getElementById('communityExplanation').style.display = 'none';
-        document.getElementById('waterLevelCheck').style.display = 'flex';
+        document.getElementById('communitySelection').style.display = 'flex';
+        window.scrollTo(0, 0);
     }
     
-    function setWaterLevel(level, button) {
-        // Update selected state
-        document.querySelectorAll('.water-option').forEach(btn => {
-            btn.classList.remove('selected');
-        });
-        button.classList.add('selected');
+    function toggleCommunity(element) {
+        element.classList.toggle('selected');
+        const community = element.getAttribute('data-community');
         
-        // For now, just alert - we'll add the next screens
-        setTimeout(() => {
-            alert('Water level selected: ' + level + '\n\nNext screens (Community Selection, Role Selection, Vetting Questions) coming soon!');
-        }, 500);
+        if (element.classList.contains('selected')) {
+            selectedCommunities.push(community);
+        } else {
+            selectedCommunities = selectedCommunities.filter(c => c !== community);
+        }
+        
+        document.getElementById('communityBtn').disabled = selectedCommunities.length === 0;
+    }
+    
+    function showRoleSelection() {
+        document.getElementById('communitySelection').style.display = 'none';
+        document.getElementById('roleSelection').style.display = 'flex';
+        window.scrollTo(0, 0);
+    }
+    
+    function updateRoles() {
+        const checkboxes = document.querySelectorAll('input[name="role"]:checked');
+        selectedRoles = Array.from(checkboxes).map(cb => cb.value);
+        document.getElementById('roleBtn').disabled = selectedRoles.length === 0;
+    }
+    
+    function showVettingQuestions() {
+        // For now, just show an alert
+        alert('Vetting questions would appear here.\n\nAfter vetting, you would be asked about your current water level and then enter the main app.');
+        window.scrollTo(0, 0);
     }
 </script>
-```
 
 </body>
 </html>
